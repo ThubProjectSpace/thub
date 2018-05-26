@@ -26,24 +26,38 @@ else
     <script src="owl.carousel.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style type="text/css">
-    	body,html{
-
-    		margin:0;
-    		padding:0;
-    	}
-    	.tabs .indicator{
+    body,html{
+      margin:0;
+      padding:0;
+      max-height:100%;
+    }
+    body::-webkit-scrollbar {
+      width: 0.2em;
+    }
+ 
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+ 
+    body::-webkit-scrollbar-thumb {
+      background-color: #2196f3;
+      outline: 1px solid #2196f3;
+    }    	
+    .tabs .indicator{
     		background-color: #2196F3;
     	}
-    	.tabs .tab a:focus, .tabs .tab a:focus.active{
+    .tabs .tab a:focus, .tabs .tab a:focus.active{
     		background-color: white;
     	}
     </style>
 </head>
 <body>
 	<div class="navbar-fixed">
-		<nav class="white" style="box-shadow:0px 0px 3px grey;">
+		<nav class="white" style="box-shadow:0px 0px 0.01px white;">
 	    	<div class="nav-wrapper">
-	      		<a href="#!" class="brand-logo black-text">DIGI</a>
+          <a href="#!" class="brand-logo black-text" style="padding:0px;">
+            <img class="img-responsive" src="logo.png" width="65" height="60">   
+          </a>
 	     		<a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons black-text">menu</i></a>
 	      		<ul class="right hide-on-med-and-down">
               <li><a class="black-text" href="homepage.php"><i class="material-icons">home</i></a></li>
@@ -137,7 +151,7 @@ else
 							<?php
 								}
 							?>
-						<form action="image.php" method="post" enctype="multipart/form-data">
+						<form action="adminimage.php" method="post" enctype="multipart/form-data">
 							<div class="row">
 							    <div class="file-field input-field col s12 m8 13 "> 
 							      <div class="btn-flat center col s12 m4 13" style="border:1px solid black;border-radius:16px;">

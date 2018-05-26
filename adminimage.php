@@ -20,11 +20,11 @@ if(isset($_POST['submit']))
 		$insert_query = mysqli_query($conn,$insert) or die(mysqli_error($conn));
 		if($insert_query)
 		{
-			header('Location: adminsettings.php');
+			header('Location: adminsetting.php');
 		}
 		else
 		{
-			echo 'Not';
+			echo "<script>alert('not uploaded');</script>";
 		}
 	}
 

@@ -24,32 +24,52 @@ else {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="owl.carousel.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+    body,html{
+      margin:0;
+      padding:0;
+      max-height:100%;
+    }
+    body::-webkit-scrollbar {
+      width: 0.2em;
+    }
+ 
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+ 
+    body::-webkit-scrollbar-thumb {
+      background-color: #2196f3;
+      outline: 1px solid #2196f3;
+    }
+    </style>
 </head>
 <body>
   <div class="navbar-fixed">
-  	<nav class="white	" style="box-shadow: none;">
-	    <div class="nav-wrapper">
-	      	<a href="#!" class="brand-logo black-text">Logo</a>
-	     	<a href="#" data-target="mobile-demo" class="sidenav-trigger balck-text"><i class="material-icons black-text">menu</i></a>
-	      	<ul class="right hide-on-med-and-down">
-	        	<li><a  class="black-text" href="homepage.php"><i class="material-icons">home</i></a></li>
-	        	<li><a  class="black-text" data-target='dropdown1' class="dropdown-trigger"><i class="material-icons">person</i></a></li>
-	        	<li><a href=""></a></li>
-	      	</ul>
-	    </div>
-  	</nav>
-  </div>
-  <ul id='dropdown1' class='dropdown-content'>
+    <nav class="white" style="box-shadow:0px 0px 0.01px white;">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo black-text" style="padding:0px;">
+            <img class="img-responsive" alt="avathar.png" src="logo.png" width="65" height="60">   
+          </a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons black-text">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a class="black-text" href="homepage.php"><i class="material-icons">home</i></a></li>
+              <li class="center"><a class="black-text dropdown-trigger" style="outline: none;" data-target='dropdown1' href=""><i class="material-icons">person</i></a></li>
+              <li><a class="black-text" href="sass.html"></a></li>
+            </ul>
+        </div>
+      </nav>
+    </div>
+  <ul id='dropdown1' class='dropdown-content' style="outline: none;">
     <li><a href="adminsettings.php">Account Settings</a></li>
     <li class="divider" tabindex="-1"></li>
-    <li><a href="logout.php">Logout</a></li>
+    <li><a href="adminlogout.php">Logout</a></li>
   </ul>
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="homepage.php">Home</a></li>
-    <li><a href="adminsettings.php">Account Settings</a></li>
-    <li><a href="logout.php">Logout</a></li>
-  </ul>
-
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="homepage.php">Home</a></li>
+      <li><a href="adminsettings.php">Account Settings</a></li>
+      <li><a href="adminlogout.php">Logout</a></li>
+    </ul>
 	<div class="profile">
 		<div class="container">
 			<div class="row">
@@ -112,7 +132,7 @@ else {
   <script>
   	$(document).ready(function(){
   		$('.sidenav').sidenav();
-  		$('.dropdown-trigger').dropdown();
+  	  $('.dropdown-trigger').dropdown();
   	});
   </script>
       <script type="text/javascript" src="js/materialize.min.js"></script>

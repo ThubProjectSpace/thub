@@ -4,7 +4,7 @@ include('config.php');
 session_start();
 
 $id = $_SESSION['id'];
-
+$decoded = str_rot13(str_rot13($id));
 
 if(isset($_POST['submit']))
 {
@@ -16,7 +16,7 @@ if(isset($_POST['submit']))
 	if(isset($_POST['id']))
 	{
 		$pid = $_POST['id'];
-		$update =  "UPDATE projects SET project_name='$projectname',description='$description',role='$role',url='$url' WHERE project_id='$pid'";
+		$update =  "UPDATE projects SET project_name='$projectname',description='$description',role='$role',url='$url' WHERE project_id='$decoded'";
 		$update_query = mysqli_query($conn,$update) or die(mysqli_error($conn));
 		header('Location: dash.php');
 	}

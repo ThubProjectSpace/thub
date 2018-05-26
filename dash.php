@@ -14,7 +14,7 @@
 	}
 	else
 	{
-		header('Location: index1.php');
+		header('Location: index.php');
 	}
 ?>
 <!DOCTYPE html>
@@ -24,10 +24,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-    <link rel="stylesheet" href="owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="owl.carousel.js"></script>
+    <script src="js/owl.carousel.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
     body,html{
@@ -36,6 +36,18 @@
     	height:100%;
     	background-color:;
     }
+    body::-webkit-scrollbar {
+      width: 0.2em;
+    }
+ 
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+ 
+    body::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      outline: 1px solid slategrey;
+    }
 	</style>	
 
 </head>
@@ -43,7 +55,9 @@
 	<div class="navbar-fixed">
 		<nav class="white" style="box-shadow:none;">
 	    	<div class="nav-wrapper">
-	      		<a href="#!" class="brand-logo black-text">DIGI</a>
+	      		<a href="#!" class="brand-logo black-text" style="padding:0px;">
+             		<img class="img-responsive" src="logo.png" width="65" height="60">   
+            	</a>
 	     		<a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons black-text">menu</i></a>
 	      		<ul class="right hide-on-med-and-down">
 	      			<li><a class="black-text" href="kick.php">Dashboard</a></li>
@@ -60,16 +74,16 @@
     <li><a href="logout.php">Logout</a></li>
   </ul>
   	<ul class="sidenav" id="mobile-demo">
-    	<li><a href="sass.html">Sass</a></li>
-    	<li><a href="badges.html">Components</a></li>
-    	<li><a href="collapsible.html">Javascript</a></li>
-    	<li><a href="mobile.html">Mobile</a></li>
+    	<li><a href="kick.php">Dashboard</a></li>
+    	<li><a href="dash.php">Profile</a></li>
+    	<li><a href="accountsettings.php">Account Settings</a></li>
+    	<li><a href="logout.php">Logout</a></li>
   	</ul>
 	<div class="profile">
 		<div class="container">
 			<div class="row">
 				<div class="col s12 m12 13 center" style="padding:30px 0px 30px 0px;">
-					<img class="img-responsive circle" width="100" height="100" src="uploads/<?php echo $fetch['image']; ?>">
+					<img class="img-responsive circle" style="border:3px solid #eeeeee;" width="100" height="100" alt="sai.png" src="uploads/<?php echo $fetch['image']; ?>">
 					<p style="font-weight: 600;"><?php echo $firstname.' '.$lastname; ?></p>
 				</div>
 			</div>
@@ -172,19 +186,19 @@
 							<input type="hidden" name="id" value="<?php echo $rows['project_id']; ?>">
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" id="project_name" value="<?php echo $rows['project_name']; ?>" name="project_name" class="validate">
+									<input type="text" id="project_name" value="<?php echo $rows['project_name']; ?>" name="project_name" class="validate" required>
 									<label for="project_name">Project Name</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<textarea id="description" value="<?php echo $rows['description']; ?>" name="description" class="materialize-textarea" data-length="300"><?php echo $rows['description']; ?></textarea>
+									<textarea id="description" value="<?php echo $rows['description']; ?>" name="description" class="materialize-textarea" data-length="300" required><?php echo $rows['description']; ?></textarea>
 									<label for="description">Description</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" id="role_name" name="role" value="<?php echo $rows['role']; ?>" class="validate">
+									<input type="text" id="role_name" name="role" value="<?php echo $rows['role']; ?>" class="validate" required>
 									<label  for="role_name">Role</label>
 								</div>
 							</div>
@@ -219,25 +233,25 @@
 					<form class="container" action="addprojects.php" method="post">
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" id="project_name" name="project_name" class="validate">
+								<input type="text" id="project_name" name="project_name" class="validate" required>
 								<label for="project_name">Project Name</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<textarea id="description" name="description" class="materialize-textarea" data-length="300"></textarea>
+								<textarea id="description" name="description" class="materialize-textarea" data-length="300" required></textarea>
 								<label for="description">Description</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" id="role_name" name="role" class="validate">
+								<input type="text" id="role_name" name="role" class="validate" required>
 								<label  for="role_name">Role</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" name="link" id="link" class="validate">
+								<input type="text" name="link" id="link" class="validate" >
 								<label for="link">Link</label>
 							</div>
 						</div>
@@ -258,22 +272,41 @@
 			<div class="academy_content">
 				<div class="row">
 					<div class="col s12 m4 13" style="border-right:1px solid grey;">
-						<p class="thin center" style="font-size:40px;">10<sup>th</sup></p>
+						<?php
+							$val = 'SSC';
+							$ssc = "SELECT * FROM education WHERE id='$id' AND degree='$val'";
+							$ssc_query = mysqli_query($conn,$ssc) or die(mysqli_error($conn));
+							$ssc_fetch = mysqli_fetch_array($ssc_query);
+						?>
+						<p class="thin center" style="font-size:40px;">SSC</p>
 						<p class="center" style=""><i class="material-icons small center" style="font-size: 1.2rem;
-						">query_builder</i><span style="margin:-10px 0px 0px 10px;">2012-2013</span></p>
-						<p class="center" style="padding:0;margin:0;">Percentage:<span>80%</span></p>
+						">query_builder</i><span style="margin:-10px 0px 0px 10px;"><?php echo $ssc_fetch['year']; ?></span></p>
+						<p class="center" style="padding:0;margin:0;">Percentage:<span><?php echo $ssc_fetch['percentage']; ?></span></p>
 					</div>
 					<div class="col s12 m4 13" style="border-right:1px solid grey;">
-						<p class="thin center" style="font-size:40px;">Intermediate</p>
+						<?php
+							$val = 'Intermediate';
+							$val1 = 'Diploma';
+							$inter = "SELECT * FROM education WHERE id='$id' AND (degree='$val' or degree='$val1')";
+							$inter_query = mysqli_query($conn,$inter) or die(mysqli_error($conn));
+							$inter_fetch = mysqli_fetch_array($inter_query);
+						?>	
+						<p class="thin center" style="font-size:40px;">Inter/Diploma</p>
 						<p class="center" style=""><i class="material-icons small center" style="font-size: 1.2rem;
-						">query_builder</i><span style="margin:-10px 0px 0px 10px;">2013-2015</span></p>
-						<p class="center" style="padding:0;margin:0;">Percentage:<span>82%</span></p>
+						">query_builder</i><span style="margin:-10px 0px 0px 10px;"><?php echo $inter_fetch['year']; ?></span></p>
+						<p class="center" style="padding:0;margin:0;">Percentage:<span><?php echo $inter_fetch['percentage']; ?></span></p>
 					</div>
 					<div class="col s12 m4 13" style="border-right:0px solid grey;">
+						<?php
+							$val = 'B-Tech';
+							$tech = "SELECT * FROM education WHERE id='$id' AND degree='$val'";
+							$tech_query = mysqli_query($conn,$tech) or die(mysqli_error($conn));
+							$tech_fetch = mysqli_fetch_array($tech_query);
+						?>						
 						<p class="thin center" style="font-size:40px;">B-Tech</p>
 						<p class="center" style=""><i class="material-icons small center" style="font-size: 1.2rem;
-						">query_builder</i><span style="margin:-10px 0px 0px 10px;">2015-2019</span></p>
-						<p class="center" style="padding:0;margin:0;">Percentage:<span>72%</span></p>
+						">query_builder</i><span style="margin:-10px 0px 0px 10px;"><?php echo $tech_fetch['year']; ?></span></p>
+						<p class="center" style="padding:0;margin:0;">Percentage:<span><?php echo $tech_fetch['percentage']; ?></span></p>
 					</div>
 				</div>
 			</div>
@@ -283,10 +316,10 @@
 					<form class="container" action="addacademy.php" method="post">
 						<div class="row">
   							<div class="input-field col s12">
-    							<select name="degree">
-      								<option value="" disabled selected>Choose your option</option>
-      								<option value="10th">10<sup>th<sup></option>
-      								<option value="Deplamo">Deplamo</option>
+    							<select name="degree" required>
+      								<option value="" selected>Choose Your Degree</option>
+      								<option value="SSC">10<sup>th<sup></option>
+      								<option value="Diploma">Deplamo</option>
       								<option value="Intermediate">Intermediate</option>
       								<option value="B-Tech">B-Tech</option>
     							</select>								
@@ -294,17 +327,17 @@
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6 13">
-								<input type="text" name="start" id="duration" class="date">
+								<input type="text" name="start" id="duration" class="date" required>
 								<label for="duration">Start Year</label>
 							</div>
 							<div class="input-field col s12 m6 13">
-								<input type="text" name="end" id="duration" class="date">
+								<input type="text" name="end" id="duration" class="date" required>
 								<label for="duration">End Year</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" name="percentage" id="percentage" class="validate">
+								<input type="text" name="percentage" id="percentage" class="validate" required>
 								<label for="percentage">Percentage</label>
 							</div>
 						</div>
@@ -352,29 +385,29 @@
 							<input type="hidden" name="id" value="<?php echo $rows['workshop_id']; ?>">
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" id="domain_name" value="<?php echo $rows['workshop_name']; ?>" name="domain_name" class="validate">
+									<input type="text" id="domain_name" value="<?php echo $rows['workshop_name']; ?>" name="domain_name" class="validate" required>
 									<label for="domain_name">Domain Name</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" id="organization_name" value="<?php echo $rows['oragnizer']; ?>" name="organization_name" class="validate">
+									<input type="text" id="organization_name" value="<?php echo $rows['oragnizer']; ?>" name="organization_name" class="validate" required>
 									<label  for="organization_name">Oraganization</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m6 13">
-									<input type="text" name="start" value="<?php echo $rows['start_date']; ?>" id="duration" class="datepicker">
+									<input type="text" name="start" value="<?php echo $rows['start_date']; ?>" id="duration" class="datepicker" required>
 									<label for="duration">Start Date</label>
 								</div>
 								<div class="input-field col s12 m6 13">
-									<input type="text" name="end" value="<?php echo $rows['end_date']; ?>" id="duration" class="datepicker">
+									<input type="text" name="end" value="<?php echo $rows['end_date']; ?>" id="duration" class="datepicker" required>
 									<label for="duration">End Date</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<textarea id="description" name="description" class="materialize-textarea" data-limit="500"><?php echo $rows['description']; ?></textarea>
+									<textarea id="description" name="description" class="materialize-textarea" data-limit="500" required><?php echo $rows['description']; ?></textarea>
 									<label for="description">Description</label>
 								</div>
 							</div>
@@ -403,29 +436,29 @@
 					<form class="container" action="addworkshop.php" method="post">
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" id="domain_name" name="domain_name" class="validate">
+								<input type="text" id="domain_name" name="domain_name" class="validate" required>
 								<label for="domain_name">Domain Name</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" id="organization_name" name="organization_name" class="validate">
+								<input type="text" id="organization_name" name="organization_name" class="validate" required>
 								<label  for="organization_name">Oraganization</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6 13">
-								<input type="text" name="start" id="duration" class="datepicker">
+								<input type="text" name="start" id="duration" class="datepicker" required>
 								<label for="duration">Start Date</label>
 							</div>
 							<div class="input-field col s12 m6 13">
-								<input type="text" name="end" id="duration" class="datepicker">
+								<input type="text" name="end" id="duration" class="datepicker" required>
 								<label for="duration">End Date</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<textarea id="description" name="description" class="materialize-textarea" data-limit="500"></textarea>
+								<textarea id="description" name="description" class="materialize-textarea" data-limit="500" required></textarea>
 								<label for="description">Description</label>
 							</div>
 						</div>
@@ -486,25 +519,25 @@
 							<input type="hidden" name="updateid" value="<?php echo $rows['certificate_id']; ?>">
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" id="c_no" name="certification_no" value="<?php echo $rows['cerification_no']; ?>">
+									<input type="text" id="c_no" name="certification_no" value="<?php echo $rows['cerification_no']; ?>" required>
 									<label for="c_no"></label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" name="skill_name" value="<?php echo $rows['skill']; ?>" class="validate" id="skill_name">
+									<input type="text" name="skill_name" value="<?php echo $rows['skill']; ?>" class="validate" id="skill_name" required>
 									<label for="skill_name">Skill</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" name="organized_name" value="<?php echo $rows['organized_by']; ?>" class="validate" id="organized_name">
+									<input type="text" name="organized_name" value="<?php echo $rows['organized_by']; ?>" class="validate" id="organized_name" required>
 									<label for="organized_name">Organized By</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" name="year" value="<?php echo $rows['year']; ?>" class="validate" id="year">
+									<input type="text" name="year" value="<?php echo $rows['year']; ?>" class="validate" id="year" required>
 									<label for="year">Year</label>
 								</div>
 							</div>
@@ -533,25 +566,25 @@
 					<form class="container" action="addcertificate.php" method="post">
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" id="c_no" name="certification_no" value="<?php echo $rows['cerification_no']; ?>">
+								<input type="text" id="c_no" name="certification_no" value="<?php echo $rows['cerification_no']; ?>" required>
 								<label for="c_no">Certificate No</label>
 							</div>
 						</div>						
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" name="skill_name" class="validate" id="skill_name">
+								<input type="text" name="skill_name" class="validate" id="skill_name" required>
 								<label for="skill_name">Skill</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" name="organized_name" class="validate" id="organized_name">
+								<input type="text" name="organized_name" class="validate" id="organized_name" required>
 								<label for="organized_name">Organized By</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" name="year" class="validate" id="year">
+								<input type="text" name="year" class="validate" id="year" required>
 								<label for="year">Year</label>
 							</div>
 						</div>
@@ -603,29 +636,29 @@
 							<input type="hidden" name="internid" value="<?php echo $rows['intern_id']; ?>" >
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" id="domain_name" name="domain_name" value="<?php echo $rows['intern_name']; ?>" class="validate">
+									<input type="text" id="domain_name" name="domain_name" value="<?php echo $rows['intern_name']; ?>" class="validate" required>
 									<label for="domain_name">Domain Name</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<input type="text" id="organization_name" value="<?php echo $rows['organization']; ?>" name="organization_name" class="validate">
+									<input type="text" id="organization_name" value="<?php echo $rows['organization']; ?>" name="organization_name" required class="validate">
 									<label  for="organization_name">Oraganization</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m6 13">
-									<input type="text" name="start" value="<?php echo $rows['start_date']; ?>" id="duration" class="datepicker">
+									<input type="text" name="start" value="<?php echo $rows['start_date']; ?>" id="duration" class="datepicker" required>
 									<label for="duration">Start Date</label>
 								</div>
 								<div class="input-field col s12 m6 13">
-									<input type="text" name="end" id="duration" value="<?php echo $rows['end_date']; ?>" class="datepicker">
+									<input type="text" name="end" id="duration" value="<?php echo $rows['end_date']; ?>" class="datepicker" required>
 									<label for="duration">End Date</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s12 m12 13">
-									<textarea id="description" name="description" class="materialize-textarea" data-limit="500"><?php echo $rows['description']; ?></textarea>
+									<textarea id="description" name="description" class="materialize-textarea" data-limit="500" required><?php echo $rows['description']; ?></textarea>
 									<label for="description">Description</label>
 								</div>
 							</div>
@@ -655,29 +688,29 @@
 						<h5 class="center" style="font-weight:100;">Add Internship</h5>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" id="domain_name" name="domain_name" class="validate">
+								<input type="text" id="domain_name" name="domain_name" class="validate" required>
 								<label for="domain_name">Domain Name</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<input type="text" id="organization_name" name="organization_name" class="validate">
+								<input type="text" id="organization_name" name="organization_name" class="validate" required>
 								<label  for="organization_name">Oraganization</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m6 13">
-								<input type="text" name="start" id="duration" class="datepicker">
+								<input type="text" name="start" id="duration" class="datepicker" required>
 								<label for="duration">Start Date</label>
 							</div>
 							<div class="input-field col s12 m6 13">
-								<input type="text" name="end" id="duration" class="datepicker">
+								<input type="text" name="end" id="duration" class="datepicker" required>
 								<label for="duration">End Date</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 m12 13">
-								<textarea id="description" name="description" class="materialize-textarea" data-limit="500"></textarea>
+								<textarea id="description" name="description" class="materialize-textarea" data-limit="500" required></textarea>
 								<label for="description">Description</label>
 							</div>
 						</div>
@@ -697,17 +730,17 @@
 				{
 			?>
 			<div class="row">
-				<div class="col s12 m1 13 center" style="padding:30px 0px 30px 0px;">
+				<div class="col s1 m1 13 center" style="padding:30px 0px 30px 0px;">
 					<div class="circle z-depth-1" style="border:1px solid #29487d;background-color:#29487d;width:60px;height:60px;margin:20px 0px 0px 0px ;">
 						<a href="<?php echo $row['facebook']; ?>"><p class="center" style="margin-top:10px;background-color:"><span style="font-weight:bold;font-size:25px;color:white;">f</span></p></a>
 					</div>				
 				</div>
-				<div class="col s12 m1 13 center" style="padding:30px 0px 30px 0px;">
+				<div class="col s1 m1 13 center" style="padding:30px 0px 30px 0px;">
 					<div class="circle z-depth-1 " style="border:1px solid #2196F3;background-color:#2196F3;width:60px;height:60px;margin:20px 0px 0px 0px ;">
 						<a href="<?php echo $row['twitter']; ?>"  style="margin-top:20px;background-color: ;font-size:20px;font-weight: bold;color:white;" class="fa fa-twitter"></a>
 					</div>				
 				</div>
-				<div class="col s12 m1 13 center" style="padding:30px 0px 30px 0px;">
+				<div class="col s1 m1 13 center" style="padding:30px 0px 30px 0px;">
 					<div class="circle z-depth-1 " style="border:1px solid #d32f2f;background-color:#d32f2f;width:60px;height:60px;margin:20px 0px 0px 0px ;">
 						<a href="<?php echo $row['googleplus']; ?>"  style="margin-top:20px;background-color: ;font-size:20px;font-weight: bold;color:white;" class="fa fa-google"> +</a>
 					</div>				

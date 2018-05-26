@@ -3,9 +3,11 @@ include('config.php');
 
 session_start();
 
+$id = $_SESSION['id'];
 $email = $_SESSION['email'];
 $fisrtname = $_SESSION['first_name'];
 $lastname = $_SESSION['last_name'];
+$image = $_SESSION['image'];
 // $sql = "SELECT firstlogin FROM register WHERE email='$email'";
 // $qurey = mysqli_query($conn,$sql) or die(mysqli_error($conn));
 // $row = mysqli_fetch_array($query);
@@ -45,10 +47,11 @@ $lastname = $_SESSION['last_name'];
 	<div class="navbar-fixed">
 		<nav class="white" style="box-shadow:none;">
 	    	<div class="nav-wrapper">
-	      		<a href="#!" class="brand-logo black-text">DIGI</a>
+	      		<a href="#!" class="brand-logo black-text" style="padding:0px;">
+             		<img class="img-responsive" src="logo.png" width="65" height="60">   
+            	</a>
 	     		<a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons black-text">menu</i></a>
 	      		<ul class="right hide-on-med-and-down">
-	      			<li><a class="black-text" href="sass.html">Sass</a></li>
 	        		<li class="center"><a class="black-text" href="logout.php"><?php echo $email; ?></a></li>
 	        		<li><a class="black-text" href="sass.html"></a></li>
 	      		</ul>
@@ -57,10 +60,10 @@ $lastname = $_SESSION['last_name'];
   	</div>
 
   	<ul class="sidenav" id="mobile-demo">
-    	<li><a href="sass.html">Sass</a></li>
-    	<li><a href="badges.html">Components</a></li>
-    	<li><a href="collapsible.html">Javascript</a></li>
-    	<li><a href="mobile.html">Mobile</a></li>
+    	<li><a href="kick.php">Dashboard</a></li>
+    	<li><a href="dash.php">Profile</a></li>
+    	<li><a href="accountsettings.php">Account Settings</a></li>
+    	<li><a href="logout.php">Logout</a></li>
   	</ul>
   	<div class="container " style="padding:0px 0px 100px 0px;">
   		<div id="welcome_call" class="animated fadeInDownBig">
@@ -68,7 +71,7 @@ $lastname = $_SESSION['last_name'];
 	  		</div>
 	  		<div class="row" style="padding:100px 0px 50px 0px;">
 	  			<div class="col s12 m6 13 center" style="padding-top:30px;">
-	  				<img class="img-responsive circle" width="250" height="250" src="little.jpg">
+	  				<img class="img-responsive circle" width="250" height="250" src="uploads/<?php echo $image; ?>">
 	  			</div>
 	  			<div class="col s12 m6 13 center">
 	  				<p class="thin" style="font-size: 55px;">Welcome to DIGI PROFILE</p>
@@ -116,11 +119,59 @@ $lastname = $_SESSION['last_name'];
 	  						</div>
 	  					</div>
 	  					<div class="right">
-	  						<a id="btn" class="btn-flat z-depth-0" style="border:1px solid black;border-radius:16px;padding:0px 20px 0px 20px;">Save & Continue</a>
+	  						<a id="btn1" class="btn-flat z-depth-0" style="border:1px solid black;border-radius:16px;padding:0px 20px 0px 20px;">Save & Continue</a>
 	  					</div>
 					</div>
 				</div>
-				<div id="profile2" class="animated fadeInRight">
+	  			<div id="profile2" class="row center">
+	  				<div class="col s12 m3 13">
+	  				</div>
+		  			<div class="col s12 m9 13 center">
+	  					<h3 class="left">Academic Details</h3>
+	  					<div class="row">
+	  						<div class="input-field col s12 m8 13">
+	  							<input type="text" name="rollno" value="<?php echo $id; ?>" readonly id="rollno">
+	  							<label for="rollno">Roll No</label>
+	  						</div>
+	  					</div>
+	  					<div class="row">
+							<div class="input-field col s12 m8 13" style="margin:0;padding:0;outline:none;">
+				  				<select class="browser-default" id="coll" name="college" style="border:1px solid grey;">
+				    				<option value="0" selected>College Name</option>
+								    <option value="ACET">ACET</option>
+				    				<option value="AEC">AEC</option>
+				    				<option value="ACE">ACE</option>
+				  				</select>
+				  				<label for="coll">College</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12 m8 13" style="margin:0;padding:0;outline:none;">
+				  				<select class="browser-default" id="brn" name="branch" style="border:1px solid grey;">
+				    				<option value="0" selected>Branch</option>
+								    <option value="CSE">CSE</option>
+				    				<option value="EEE">EEE</option>
+				    				<option value="Civil">Civil</option>
+				    				<option value="ECE">ECE</option>
+				    				<option value="Mechanical">Mechanical</option>
+				    				<option value="Petroleium">Petroleium</option>
+				    				<option value="Agriculture">Agriculture</option>
+				  				</select>
+				  				<label for="brn">Branch</label>
+							</div>
+						</div>
+	  					<div class="row">
+	  					<div class="input-field col s12 m8 13">
+	  							<input type="text" name="academy_year" placeholder="Location" id="location">
+	  							<label for="location">Academic Year</label>
+	  						</div>
+	  					</div>
+	  					<div class="right">
+	  						<a id="btn2" class="btn-flat z-depth-0" style="border:1px solid black;border-radius:16px;padding:0px 20px 0px 20px;">Save & Continue</a>
+	  					</div>
+					</div>
+				</div>
+				<div id="profile3" class="animated fadeInRight">
 					<div class="row">
 			  			<div class="col s12 m3 13">
 	  					</div>
@@ -168,15 +219,24 @@ $lastname = $_SESSION['last_name'];
   	<script>
   		$(document).ready(function(){
   			$('.sidenav').sidenav();
+  			$('select').formSelect();
   			$('#profile').hide();
   			$('#social1').hide();
   			$('#Welcome_btn').click(function(){
   				$('#welcome_call').hide();
   				$('#profile2').hide();
+  				$('#profile3').hide();
   				$('#profile').show();
   			});
-  			$('#btn').click(function(){
+  			$('#btn1').click(function(){
   				$('#profile2').show();
+  				$('#profile3').hide();
+  				$('#welcome_call').hide();
+  				$('#profile1').hide();
+  			});
+  			$('#btn2').click(function(){
+  				$('#profile3').show();
+  				$('#profile2').hide();
   				$('#welcome_call').hide();
   				$('#profile1').hide();
   			})

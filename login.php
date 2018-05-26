@@ -24,6 +24,7 @@ if(isset($_POST['email']) && isset($_POST['password']))
 				$_SESSION['id'] = $row['id'];
 				$_SESSION['first_name'] = $row['first_name'];
 				$_SESSION['last_name'] = $row['last_name'];
+				$_SESSION['image'] = $row['image'];
 				header('Location:kick.php');
 			}
 			else
@@ -33,20 +34,21 @@ if(isset($_POST['email']) && isset($_POST['password']))
 				$_SESSION['firstlogin'] =$row['firstlogin'];
 				$_SESSION['first_name'] = $row['first_name'];
 				$_SESSION['last_name'] = $row['last_name'];
+				$_SESSION['image'] = $row['image'];
 				header('Location:first.php');
 			}
 		}
 		else
 		{
 			echo '<script>alert("enter correct username and password");</script>';
-			echo '<script>window.location.href="index1.php";</script>';
+			echo '<script>window.location.href="index.php";</script>';
 		}
 
 	}
 	else
 	{
 		echo '<script>alert("enter the correct password and username");</script>';
-		echo '<script>window.location.href="index1.php";</script>';	
+		echo '<script>window.location.href="index.php";</script>';	
 	}
 }
 ?>

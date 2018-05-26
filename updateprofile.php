@@ -15,4 +15,5 @@ if(isset($_POST['submit']))
 	$sql = "UPDATE register SET dateofbirth='$dob',phone='$phone',location='$location',password='$password' WHERE id= '$id'";
 	$query = mysqli_query($conn,$sql)  or die(mysqli_error($conn));
 
+
 }

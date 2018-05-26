@@ -30,13 +30,13 @@ if(isset($_POST['submit']))
 		{
 
 			echo '<script>alert("enter correct password");</script>';
-			echo '<script>window.location.href="index1.php";</script>';
+			echo '<script>window.location.href="adminlogin.php";</script>';
 		}
 	}
 	else
 	{
 			echo '<script>alert("enter correct username and password");</script>';
-			echo '<script>window.location.href="index1.php";</script>';
+			echo '<script>window.location.href="adminlogin.php";</script>';
 	}
 }
 ?>

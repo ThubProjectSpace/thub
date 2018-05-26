@@ -3,7 +3,6 @@ include('config.php');
 session_start();
 $sql = "SELECT * FROM register";
 $sql_query = mysqli_query($conn,$sql);
-
 $email = $_SESSION['email'];
 ?>
 <!DOCTYPE html>
@@ -19,11 +18,29 @@ $email = $_SESSION['email'];
     <script src="owl.carousel.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style type="text/css">
-    #srcoll {
-    	overflow-y: hidden;
+    body,html{
+      margin:0;
+      padding:0;
+      max-height:100%;
     }
-    #srcoll:hover{
-    	overflow-y: auto;
+    body::-webkit-scrollbar {
+      width: 0.2em;
+    }
+ 
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+ 
+    body::-webkit-scrollbar-thumb {
+      background-color: #2196f3;
+      outline: 1px solid #2196f3;
+    }
+    img{
+    
+      /*height:35%;*/
+    }
+    nav{
+
     }
     </style>
 </head>
@@ -31,15 +48,15 @@ $email = $_SESSION['email'];
 	<div class="navbar-fixed">
 		<nav class="white" style="box-shadow:none;">
 	    	<div class="nav-wrapper">
-	      		<a href="#!" class="brand-logo black-text" style="padding:7px;">
-             <img class="img-responsive" src="inner.jpg" width="150" height="42">   
+	      		<a href="#!" class="brand-logo black-text" style="padding:0px;">
+             <img class="img-responsive" src="logo.png" width="65" height="60">   
             </a>
 	     		<a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons black-text">menu</i></a>
 	      		<ul class="right hide-on-med-and-down">
 	      			<li><a class="black-text" href="kick.php">Dashboard</a></li>
 	      			<li><a class="black-text" href="dash.php">Profile</a></li>
 	        		<li class="center"><a style="outline:none;" class="black-text dropdown-trigger" data-target="dropdown1" href=""><?php echo $email; ?></a></li>
-	        		<li><a class="black-text" href="sass.html"></a></li>
+	        		<li><a class="black-text" href=""></a></li>
 	      		</ul>
 	    	</div>
 	  	</nav>
@@ -49,13 +66,13 @@ $email = $_SESSION['email'];
     <li class="divider" tabindex="-1"></li>
     <li><a href="logout.php">Logout</a></li>
   </ul>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="kick.php">Dashboard</a></li>
+      <li><a href="dash.php">Profile</a></li>
+      <li><a href="accountsettings.php">Account Settings</a></li>
+      <li><a href="logout.php">Logout</a></li>
+    </ul>
 
-  	<ul class="sidenav" id="mobile-demo">
-    	<li><a href="sass.html">Sass</a></li>
-    	<li><a href="badges.html">Components</a></li>
-    	<li><a href="collapsible.html">Javascript</a></li>
-    	<li><a href="mobile.html">Mobile</a></li>
-  	</ul>
 <div class="main">
       <div class="container" style="padding:40px 0px 40px 0px;">
         <div class="row" style="margin:0;">
@@ -90,8 +107,8 @@ $email = $_SESSION['email'];
             <p>30</p>
           </div>
           <div class="col s12 m3 13 center" style="box-shadow:0px 0px 0.01px grey;padding:20px;margin:0px;">
-            <img class="img-responsive" width="100" height="100" src="android.png">
-            <p style="font-size:30px;margin: 0;padding:0;">Android</p>
+            <img class="img-responsive" width="100" height="100" src="java.jpg">
+            <p style="font-size:30px;margin: 0;padding:0;">Java</p>
             <p>30</p>
           </div>
         </div>
@@ -116,7 +133,7 @@ $email = $_SESSION['email'];
   		</div>
   	</div>
   	<div class="row">
-  		<div class="col s12 m8 13" id="srcoll" style="max-height:500px;">
+  		<div class="col s12 m12 13" id="" style="max-height:550px;">
   		<div class="containr" style="padding:30px;">
     		
     		<div class="row">
@@ -127,12 +144,12 @@ $email = $_SESSION['email'];
               $search = "SELECT * FROM skills WHERE skill_name='$search_key'";
               $search_query = mysqli_query($conn,$search) or die(mysqli_error($conn));
               $search_count = mysqli_num_rows($search_query);
-              while($serch_fetch =mysqli_fetch_array($search_query))
+              while($search_fetch =mysqli_fetch_array($search_query))
               {
           ?>
-                <div class="col s12 m4 13" style="position:relative;">
+                <div class="col s12 m3 13">
                   <div class="card small z-depth-0" style="border:1px solid #eeeeee;">
-                    <a href="#view?id=<?php echo $search_fetch['id']; ?>">
+                    <a href="#view?inid=<?php echo $search_fetch['id']; ?>">
                       <div class="card-image" style="max-height: 250px;">
                         <img src="uploads/<?php echo $search_fetch['image']; ?>">
                         <span class="card-title"><?php echo $search_fetch['first_name'].' '.$sql_fetch['last_name']; ?></span>
@@ -142,7 +159,6 @@ $email = $_SESSION['email'];
                       <a href="userview.php?id=<?php echo $search_fetch['id']; ?>" id="">View Detailed</a>
                     </div>
                   </div>
-                  <!-- Sai@github1.in -->
                 </div>
 	    			<?php
                 }
@@ -152,19 +168,19 @@ $email = $_SESSION['email'];
 	    				  while($sql_fetch = mysqli_fetch_array($sql_query))
 	    				  {
 	    			?>
-	    			    <div class="col s12 m4 13" style="position:relative;">
+	    			    <div class="col s12 m3 13" style="position:relative;">
 	     				    <div class="card small z-depth-0" style="border:1px solid #eeeeee;">
-	        				  <a href="#view?id=<?php echo $sql_fetch['id']; ?>">
+	        				  <a href="#view&inid=<?php echo $sql_fetch['id']; ?>">
 	        				    <div class="card-image" style="max-height: 250px;">
 	          					  <img src="uploads/<?php echo $sql_fetch['image']; ?>">
 	          						<span class="card-title"><?php echo $sql_fetch['first_name'].' '.$sql_fetch['last_name']; ?></span>
 	 	 	      				  </div>
 	 	 	      			  </a>
-	       					<div class="card-action">
+	       					  <div class="card-action">
 	          					<a href="userview.php?id=<?php echo $sql_fetch['id']; ?>" id="">View Detailed</a>
-	        				</div>
-	      				</div>
-	    			</div>
+	        				  </div>
+	      				  </div>
+	    			    </div>
 	    			<?php
 	    				}
             }
@@ -172,16 +188,25 @@ $email = $_SESSION['email'];
     			</div>   		
   			</div>
   		</div>
-  		<div class="col s12 m4 13 hide-on-med-and-down	" style="">
-  			<form id="view?id=<?php echo $sql_fetch; ?>">
+<!--   		<div class="col s12 m4 13 hide-on-med-and-down	" style="">
+  			<?php
+        if(isset($_GET['inid']))
+        { 
+          $val = $_GET['inid'];
+          echo '<script>alert("success");</script>';
+          $select = "SELECT * FROM register WHERE id='$val'";
+          $select_query = mysqli_query($conn,$select) or die(mysqli_error($conn));
+          $select_fetch = mysqli_fetch_array($select_query);
+        ?>
+        <form id="view<?php echo $val; ?>">
   			<div class="row">
   				<div class="col s12 m4 13">
-  					<img class="circle img-responsive" width="100" height="100" src="img.jpg">
+  					<img class="circle img-responsive" width="100" height="100" src="uploads/<?php echo $select_fetch['image']; ?>">
   				</div>
   				<div class="col s12 m8 13">
   					<p>
   						<span class="thin" style="padding:20px 0px 0px 0px;font-weight:500;line-height:10px;">
-  							<?php echo $sql_fetch['first_name']; ?>
+  							<?php echo $select_fetch['first_name']; ?>
   						</span><br>
   						
   						<span style="line-height:10px;"><i class="material-icons tiny">email</i> saiyashwanth@gmail.com</span><br>
@@ -222,7 +247,10 @@ $email = $_SESSION['email'];
   				<a class="btn-flat" href="userview.php?id=<?php echo $sql_fetch['id']; ?>" style="border:1px solid black;border-radius:16px;">View </a>
   			</div>
   			</form>
-  		</div>
+        <?php
+          }
+        ?>
+  		</div> -->
   	</div>
 
   	<script type="text/javascript">

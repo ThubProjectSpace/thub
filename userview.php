@@ -30,11 +30,22 @@ else
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
     body,html{
-    	margin:0;
-    	padding:0;
-    	height:100%;
-    	background-color:;
+      margin:0;
+      padding:0;
+      max-height:100%;
     }
+    body::-webkit-scrollbar {
+      width: 0.2em;
+    }
+ 
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+ 
+    body::-webkit-scrollbar-thumb {
+      background-color: #2196f3;
+      outline: 1px solid #2196f3;
+    }  
 	</style>	
 
 </head>
@@ -42,7 +53,9 @@ else
 	<div class="navbar-fixed">
 		<nav class="white" style="box-shadow:none;">
 	    	<div class="nav-wrapper">
-	      		<a href="#!" class="brand-logo black-text">DIGI</a>
+	      		<a href="#!" class="brand-logo black-text" style="padding:0px;">
+             		<img class="img-responsive" src="logo.png" width="65" height="60">   
+            	</a>
 	     		<a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons black-text">menu</i></a>
 	      		<ul class="right hide-on-med-and-down">
 	      			<?php
@@ -83,10 +96,12 @@ else
        }
        else if(@$_SESSION['email']){
       ?>
-      <li><a href="sass.html">Sass</a></li>
-      <li><a href="badges.html">Components</a></li>
-      <li><a href="collapsible.html">Javascript</a></li>
-      <li><a href="mobile.html">Mobile</a></li>
+  	<ul class="sidenav" id="mobile-demo">
+    	<li><a href="kick.php">Dashboard</a></li>
+    	<li><a href="dash.php">Profile</a></li>
+    	<li><a href="accountsettings.php">Account Settings</a></li>
+    	<li><a href="logout.php">Logout</a></li>
+  	</ul>
       <?php 
       }
       ?>
@@ -136,15 +151,20 @@ else
 
 		          			while($skill_fetch = mysqli_fetch_array($skill_query))
 		          			{
+		          				$level =$skill_fetch['grade'];
+		          				if($level>0)
+		          				{
 		          		?>
-		            	<div class="item">
-		              		<div class="circle center" style="border:1px solid black;width:100px;height:100px;margin:20px 0px 0px 0px ;">
-								<p class="center" style="margin-top:30px;"><span class="center" style="font-weight:bold;"><?php echo $skill_fetch['skill_name']; ?></span><br><span class="" style="color:#c6c6c6;">50%</span></p>
-							</div>
-		            	</div>
+		            				<div class="item">
+		              					<div class="circle center" style="border:1px solid black;width:100px;height:100px;margin:20px 0px 0px 0px ;">
+											<p class="center" style="margin-top:30px;"><span class="center" style="font-weight:bold;"><?php echo $skill_fetch['skill_name']; ?></span><br><span class="" style="color:#c6c6c6;">50%</span></p>
+										</div>
+									</div>
 		            	<?php
-		            		}
-		            	?>            	
+		            		
+	            				}
+		            		}	
+		            	?>         	
 		          	</div>
 	          	</div>
        		</div>
@@ -309,17 +329,17 @@ else
 				$social_fetch =mysqli_fetch_array($social_query);
 			?>
 			<div class="row">
-				<div class="col s12 m1 13 center" style="padding:30px 0px 30px 0px;">
+				<div class="col s3 m1 13 center" style="padding:30px 0px 30px 0px;">
 					<div class="circle z-depth-1" style="border:1px solid #29487d;background-color:#29487d;width:60px;height:60px;margin:20px 0px 0px 0px ;">
 						<a href="<?php echo $social_fetch['facebook']; ?>"><p class="center" style="margin-top:10px;background-color:"><span style="font-weight:bold;font-size:25px;color:white;">f</span></p></a>
 					</div>				
 				</div>
-				<div class="col s12 m1 13 center" style="padding:30px 0px 30px 0px;">
+				<div class="col s3 m1 13 center" style="padding:30px 0px 30px 0px;">
 					<div class="circle z-depth-1 " style="border:1px solid #2196F3;background-color:#2196F3;width:60px;height:60px;margin:20px 0px 0px 0px ;">
 						<a href="<?php echo $social_fetch['twitter']; ?>"  style="margin-top:20px;background-color: ;font-size:20px;font-weight: bold;color:white;" class="fa fa-twitter"></a>
 					</div>				
 				</div>
-				<div class="col s12 m1 13 center" style="padding:30px 0px 30px 0px;">
+				<div class="col s3 m1 13 center" style="padding:30px 0px 30px 0px;">
 					<div class="circle z-depth-1 " style="border:1px solid #d32f2f;background-color:#d32f2f;width:60px;height:60px;margin:20px 0px 0px 0px ;">
 						<a href="<?php echo $social_fetch['linkedin']; ?>"  style="margin-top:20px;background-color: ;font-size:20px;font-weight: bold;color:white;" class="fa fa-google"> +</a>
 					</div>				

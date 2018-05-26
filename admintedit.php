@@ -28,19 +28,32 @@ else
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
     body,html{
-    	margin:0;
-    	padding:0;
-    	height:100%;
-    	background-color:;
+      margin:0;
+      padding:0;
+      max-height:100%;
+    }
+    body::-webkit-scrollbar {
+      width: 0.2em;
+    }
+ 
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+ 
+    body::-webkit-scrollbar-thumb {
+      background-color: #2196f3;
+      outline: 1px solid #2196f3;
     }
 	</style>	
 
 </head>
 <body>
 	<div class="navbar-fixed">
-		<nav class="white" style="box-shadow:0px 0px 0.01px black;">
+		<nav class="white" style="box-shadow:0px 0px 0.01px white;">
 	    	<div class="nav-wrapper">
-	      		<a href="#!" class="brand-logo black-text">DIGI</a>
+	      		<a href="#!" class="brand-logo black-text" style="padding:0px;">
+             		<img class="img-responsive" src="logo.png" width="65" height="60">   
+            	</a>
 	     		<a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons black-text">menu</i></a>
 	      		<ul class="right hide-on-med-and-down">
 	      			<li><a class="black-text" href="homepage.php"><i class="material-icons">home</i></a></li>
@@ -139,38 +152,43 @@ else
 	<div class="divider"></div>
 	<div class="container">
 		<h3 class="thin">Skills</h3>
-		<div class="row">
-			<?php
+
+			<div class="row">
+				<?php
 				$get = "SELECT * FROM skills WHERE id='$id'";
 				$get_query = mysqli_query($conn,$get) or die(mysqli_error($conn));
 				$get_count = mysqli_num_rows($get_query);
 				while($get_fetch= mysqli_fetch_array($get_query))
 				{
-			?>
-			<div class="col s12 m6 13">
-				<form action="" method="post">
+				?>
+				<div class="col s12 m6 13">
+					<form action="grade.php" method="post">
 					<div class="row">
-						<div class="input-field col s5 m5 13" style="margin:0;padding:0;">
-			  				<select class="browser-default black-text" disabled style="border:1px solid grey;border-radius: 16px 0px 0px 16px;">
-			    				<option value="" disabled selected><?php echo $get_fetch['skill_name']; ?></option>
+						<div class="input-field col s4 m4 13" style="margin:0;padding:0;outline:none;">
+			  				<select class="browser-default black-text" name="name" style="border:1px solid grey;border-radius: 16px 0px 0px 16px;">
+			    				<option value="<?php echo $get_fetch['skill_id']; ?>"  selected><?php echo $get_fetch['skill_name']; ?></option>
 			  				</select>
 						</div>			
-						<div class="input-field col s5 m5 13" style="margin:0;padding:0;">
+						<div class="input-field col s4 m4 13" style="margin:0;padding:0;outline:none;">
 			  				<select class="browser-default" name="grade" style="border:1px solid grey;border-radius: 0px 16px 16px 0px;">
-			    				<option value="" disabled selected>Level percentage</option>
-							    <option value="1">25</option>
-			    				<option value="2">50</option>
-			    				<option value="3">75</option>
-			    				<option avlue="4">100</option>>
+			    				<option value="0" selected>Level percentage</option>
+							    <option value="25">25</option>
+			    				<option value="50">50</option>
+			    				<option value="75">75</option>
+			    				<option avlue="100">100</option>>
 			  				</select>
 						</div>
+						<div class="col s3 m3 13" style="padding:5px 0px 0px 0px;">
+							<button type="submit" name="submit" class="btn-flat right" style="border:1px solid black;border-radius:16px;">Save</button>
+						</div>
 					</div>
-				</form>
+					</form>
+				</div>
+				<?php
+					}
+				?>
 			</div>
-			<?php
-				}
-			?>
-		</div>
+		
 	</div>
     <footer style="padding-top:50px;padding-bottom:50px;background-color:#D0D3D4;">
         <div class="center">
